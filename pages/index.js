@@ -1,85 +1,186 @@
 import React from 'react'
 import Head from 'next/head'
-import Nav from '../components/nav'
+
+import Content from '../components/content';
+import Cta from '../components/cta';
 
 const Home = () => (
-  <div>
+  <div id="home-page">
     <Head>
       <title>Home</title>
       <link rel="icon" href="/favicon.ico" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
     </Head>
 
-    <Nav />
+    {/* Need to create reusable components and content */}
+    <section id="home">
+    
+      <div className="splash">
 
-    <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
+        <div className="left">
 
-      <div className="row">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
+          <Content 
+            type="content-standard" 
+            title="" 
+            body="
+              We want to see eSports take hold.
+            " />
+          
+        </div>
+
+        <div className="right">
+          <Content 
+            type="content-card"
+            title=""
+            body=""
+          />
+        </div>
+        
       </div>
-    </div>
+
+      <div id="articles" className="articles">
+
+        <div className="left">
+
+          <Content
+            type="content-minimalist"
+            title="Articles"
+            body="
+              Get new articles written by our
+              passionate eSports fans. Think you
+              can write? Contact us and give it a go!
+            " />
+
+        </div>
+
+        <div className="right">
+
+          <Content
+            type="newsfeed"
+            title=""
+            body=""
+          />
+
+        </div>
+
+      </div>
+
+      <div id="news" className="news">
+      
+      </div>
+
+      <div id="stats" className="stats">
+      
+      </div>
+
+    </section>
 
     <style jsx>{`
-      .hero {
+
+      // --------- Global ----------
+
+      .section-title {
+        position: absolute;
         width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
+        justify-content: center;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        font-size: 33px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        margin: 20px 0px;
+        color: #3d3d3d;
+        flex-direction: column;
+        align-items: center;
+        text-transform: uppercase;
       }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
+
+      .section-title .underline {
+        width: 72px;
+        height: 1px;
+        background-color: #b20101;
       }
-      .card:hover {
-        border-color: #067df7;
+
+    // ------------ HOME SECTION ------------ 
+
+      #home-page {
+        height: 100%;
+        width: 100%;
       }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
+
+      #home {
+        height: inherit;
+        width: inherit;
       }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
+
+      // SPLASH SECTION
+
+      .splash {
+        height: 100%;
+        width: 100%;
+        display: flex;
+      }
+
+      .left, .right {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .splash .left {
+        background-color: #e3e3e3;
+      }
+
+      .splash .right {
+        background-color: #3d3d3d;
+      }
+
+      // ------------ ABOUT SECTION ------------ 
+
+      .articles {
+        height: 100%;
+        width: 100%;
+        background-color: #e3e3e3;
+        display: flex;
+        position: relative;
+      }
+
+      .articles .left {
+
+      }
+
+      .articles .right {
+        display: flex;
+        flex-direction: column;
+      }
+
+      // ------------ NEWS SECTION ------------ 
+
+      .news {
+        height: 100%;
+        width: 100%;
+      }
+
+      // ------------ STATS SECTION ------------ 
+
+      .stats {
+        height: 100%;
+        width: 100%;
+      }
+
+      @media (max-width: 926px) {
+
+        .splash, .articles {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .left, .right {
+          height: 50%;
+          width: 100%;
+        }
       }
     `}</style>
   </div>

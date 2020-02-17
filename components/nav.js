@@ -1,56 +1,91 @@
 import React from 'react'
 import Link from 'next/link'
 
-const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
-].map(link => ({
-  ...link,
-  key: `nav-link-${link.href}-${link.label}`,
-}))
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+// const links = [
+//   { href: '#', label: 'B00MHAUSEN' },
+// ].map(link => ({
+//   ...link,
+//   key: `nav-link-${link.href}-${link.label}`,
+// }))
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
-)
+class Nav extends React.Component {
 
-export default Nav
+  testFunction() {
+    let nav_menu = document.createElement('div');
+    nav_menu.classList.add('nav__menu');
+    document.getElementsByTagName('body')[0].appendChild(nav_menu);
+  }
+
+  render() {
+    return(
+      <nav>
+        <ul>
+          <li>
+            <img className="logo" src={'/static/logo.svg'} />
+          </li>
+
+          <li className="menu" onClick={this.testFunction}>
+            <FontAwesomeIcon icon={faAngleDoubleLeft} />     
+          </li>
+        </ul>
+
+        <style jsx>{`
+          nav {
+            background-color: #3d3d3d;
+            margin: 0px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+          }
+
+          .logo {
+            width: 150px;
+          }
+
+          ul {
+            display: flex;
+            list-style: none;
+            padding: 12px 5px;
+            margin: 0px;
+            justify-content: center;
+            align-items: center;
+          }
+
+          a {
+            text-decoration: none;
+            color: #e3e3e3;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+          }
+
+          .menu {
+            position: absolute;
+            right: 15px;
+            color: #e3e3e3;
+            width: 15px;
+          }
+
+          .menu:hover {
+            cursor: pointer;
+          }
+
+          .nav__menu {
+            height: 100%;
+            width: 50%;
+            background: #3d3d3d;
+            position: fixed;
+            right: 0;
+            z-index: -1;
+          }
+        `}</style>
+      </nav>
+    )
+  }
+}
+
+export default Nav;
